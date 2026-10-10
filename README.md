@@ -159,3 +159,21 @@ AI site builders or “Sites” experiences can help create landing pages, copy 
 - Vercel pricing: https://vercel.com/pricing
 - Docker Compose: https://docs.docker.com/compose/
 - FastAPI: https://fastapi.tiangolo.com/
+
+
+## Build fix — October 2026
+
+The first ZIP had a TypeScript compile failure in `app/page.tsx` because the dashboard
+`quick` statistics passed a `title` field into the `Stat` component, which requires `label`.
+This release changes the four `quick` entries to `label` and uses `key={x.label}`.
+
+After updating/replacing the files, run:
+
+```bash
+npm install
+npm run build
+```
+
+If Vercel is connected to GitHub, commit/push the corrected files and redeploy.
+The full Next.js build could not be verified in the packaging environment because
+`npm install` timed out; any further errors should be shared with their build logs.
